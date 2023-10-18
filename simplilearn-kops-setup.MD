@@ -15,7 +15,7 @@
 		
 	Create a Role for the above specified permissions and then attach it to the running EC2 instance
 
-	### 3. Install Kops on EC2
+	### 3. Install Kops on EC2 !!!!!! amd64 - ARCHITECTURE
 ```sh
 curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
 chmod +x kops-linux-amd64
