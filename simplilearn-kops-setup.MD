@@ -53,7 +53,7 @@ export KOPS_STATE_STORE=s3://simplilearn.in.k8s
 ```
 Then running command to reflect variables added to .bashrc
 ```
-	source ~/.bashrc
+source ~/.bashrc
 ```
 ### 8. Create ssh key pair
 This keypair is used for ssh into kubernetes cluster
