@@ -43,7 +43,7 @@ simplilearn.k8s
 ### 7 Configure environment variables.
 Open .bashrc file 
 ```
-	vi ~/.bashrc
+vi ~/.bashrc
 ```
 Add following content into .bashrc, you can choose any arbitary name for cluster and make sure buck name matches the one you created in previous step.
 
