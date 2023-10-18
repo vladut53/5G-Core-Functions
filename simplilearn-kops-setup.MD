@@ -79,6 +79,8 @@ kops create cluster \
 
 ```sh
 kops update cluster --yes
+kops validate cluster --wait 10m
+kops get cluster
 ```
 Above command may take some time to create the required infrastructure resources on AWS. Execute the validate command to check its status and wait until the cluster becomes ready
 
