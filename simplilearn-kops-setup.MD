@@ -3,7 +3,11 @@
 ### 1. Launch Linux EC2 instance in AWS, we will use this EC2 instance to launch
  our Kubernetes cluster by installing Kops on it. I will launch this instance in 
   Ohio region but you can pick any region of your choice
- 
+
+!! NO GENERATED KEY VIA PUTTY
+
+
+
 ### 2. Create and attach IAM role to EC2 Instance.
 	Kops would need permissions following permissions in order to operate:
 		S3
