@@ -23,6 +23,6 @@ STEPS TO BE DONE NEXT <br>
 11) Performance Testing: <br>
 12) Validation and Integration Testing: <br>
 
-<br> <br> <br>
+<br> 
 Expect near February-March 2024: <br>
 - release and integration of the SMF
