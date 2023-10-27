@@ -1,5 +1,6 @@
 # 5G-Core-Functions
-Early Development; Only AMF and NRF
+Early Development; <br>
+Only AMF and NRF (Python3 microservices and Dockerfilles)
 
 
 # Rolling update on the AMF's and NRF's Dockerfilles
