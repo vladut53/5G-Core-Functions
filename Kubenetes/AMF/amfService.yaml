@@ -1,0 +1,14 @@
+# AMF - SERVICE FILE
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-amf
+spec: 
+  selector:
+    app: amf
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

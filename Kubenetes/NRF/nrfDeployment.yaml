@@ -1,0 +1,28 @@
+# NRF - DEPLOYMENT FILE
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-nrf
+spec:
+  replicas: 1
+  selector:
+    matchExpressions:
+      - {key: app, operator: IN, values: [nrf]}
+  template:
+    metadata:
+      labels:
+        app: nrf
+    spec:
+      containers:
+        - name: nrf
+          image: vladutzi1/nrf:latest
+          ports:
+            - containerPort: 81
+          resources:
+            limits:
+              cpu: '1'
+              memory: 500Mi
+            requests:
+              cpu: '0.5'
+              memory: 250Mi
