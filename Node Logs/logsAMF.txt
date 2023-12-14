@@ -1,0 +1,124 @@
+ * Serving Flask app 'amf'
+ * Debug mode: off
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://10.1.50.83:80
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:18:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:18:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:18:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:18:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:19:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:19:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:19:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:19:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:19:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:19:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:20:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:20:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:20:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:20:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:20:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:20:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:21:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:21:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:21:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:21:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:21:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:21:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:22:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:22:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:22:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:22:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:22:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:22:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:23:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:23:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:23:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:23:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:23:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:23:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:24:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:24:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:24:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:24:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:24:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:24:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:25:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:25:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:25:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:25:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:25:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:25:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:26:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:26:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:26:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:26:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:26:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:26:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:27:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:27:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:27:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:27:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:27:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:27:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:28:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:28:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:28:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:28:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:28:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:28:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:29:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:29:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:29:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:29:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:29:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:29:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:root:AMF: User 1234 registered with site code 1
+INFO:werkzeug:127.0.0.1 - - [14/Dec/2023 08:29:53] "POST /amf/register HTTP/1.1" 200 -
+INFO:root:AMF: Received access request from user user1
+INFO:root:Routing to SMF with URL: http://10.152.183.138:82/smf/route?code=1
+INFO:werkzeug:127.0.0.1 - - [14/Dec/2023 08:30:02] "POST /amf/access-smf HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:30:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:30:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:root:AMF: Received access request from user user1
+INFO:root:Routing to SMF with URL: http://10.152.183.138:82/smf/route?code=1
+INFO:werkzeug:127.0.0.1 - - [14/Dec/2023 08:30:17] "POST /amf/access-smf HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:30:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:30:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:root:AMF: Received access request from user user2
+INFO:root:Routing to SMF with URL: http://10.152.183.138:82/smf/route?code=3
+INFO:werkzeug:127.0.0.1 - - [14/Dec/2023 08:30:25] "POST /amf/access-smf HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:30:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:30:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:31:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:31:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:31:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:31:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:31:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:31:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:32:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:32:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:32:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:32:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:32:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:32:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:33:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:33:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:33:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:33:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:33:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:33:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:34:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:34:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:34:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:34:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:34:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:34:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:35:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:35:02] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:35:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:35:22] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:35:42] "GET /healthcheck HTTP/1.1" 200 -
+INFO:werkzeug:10.0.2.15 - - [14/Dec/2023 08:35:42] "GET /healthcheck HTTP/1.1" 200 -
