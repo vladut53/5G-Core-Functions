@@ -1,0 +1,44 @@
+# SMF - DEPLOYMENT FILE
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-smf
+  namespace: nf-smf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smf
+  template:
+    metadata:
+      labels:
+        app: smf
+    spec:
+      containers:
+        - name: smf
+          image: vladutzi1/smf:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 82
+          resources:
+            limits:
+              cpu: '1'
+              memory: 500Mi
+            requests:
+              cpu: '0.5'
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 82
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 82
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            timeoutSeconds: 5

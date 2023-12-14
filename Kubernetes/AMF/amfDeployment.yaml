@@ -1,0 +1,47 @@
+# AMF - DEPLOYMENT FILE
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-amf
+  namespace: nf-amf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amf
+  template:
+    metadata:
+      labels:
+        app: amf
+    spec:
+      containers:
+        - name: amf
+          image: vladutzi1/amf:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: NRF_DISCOVER_SMF_URL
+              value: "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf"
+          resources:
+            limits:
+              cpu: '1'
+              memory: 500Mi
+            requests:
+              cpu: '0.5'
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            timeoutSeconds: 5

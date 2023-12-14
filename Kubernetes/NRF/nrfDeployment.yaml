@@ -1,0 +1,44 @@
+# NRF - DEPLOYMENT FILE
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-nrf
+  namespace: nf-nrf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nrf
+  template:
+    metadata:
+      labels:
+        app: nrf
+    spec:
+      containers:
+        - name: nrf
+          image: vladutzi1/nrf:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 81
+          resources:
+            limits:
+              cpu: '1'
+              memory: 500Mi
+            requests:
+              cpu: '0.5'
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 81
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 81
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            timeoutSeconds: 5
