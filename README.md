@@ -1,14 +1,8 @@
 # 5G-Core-Functions
 Early Development; <br>
-Only AMF and NRF (Python3 microservices and Dockerfilles)
+Only AMF, NRF and SMF (Python3 microservices, Dockerfiles, Deployment and Service files for K8s)
 
 
-# Rolling update on the AMF's and NRF's Dockerfilles
-Has to be updated on 27.10.2023 <br>
-Update:<br>
-- expose ports in the AMF's and NRF's Dockerfille; Initially, not opened ports <br>
-- update to the last version of the pip3 in order to run requirements.txt's ENVIROMENT VARIABLES <br>
-- SMF release <br>
-- local test on microk8s cluster of the functions (Success)
-<br> <br>
+# 27.10.2023: Rolling update on the AMF's and NRF's Dockerfiles
+# 14.12.2023: Release of the SMF with his Dockerfile; Test of microservices (successfully) on a local K8s enviroment(microk8s)
 
