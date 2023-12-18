@@ -9,8 +9,8 @@ app = Flask(__name__)
 # Statically defined service profiles for AMF and SMF
 # In a real-world scenario, this might involve dynamic registration and discovery mechanisms
 registered_services = {
-    "amf": {"service_endpoint": "http://10.152.183.253:80"},  # Adjust the AMF endpoint as needed
-    "smf": {"service_endpoint": "http://10.152.183.138:82"}  # Adjust the SMF endpoint as needed
+    "amf": {"service_endpoint": "http://10.152.183.253:80"}, 
+    "smf": {"service_endpoint": "http://10.152.183.138:82"}  
 }
 
 @app.route('/nrf/register', methods=['POST'])
