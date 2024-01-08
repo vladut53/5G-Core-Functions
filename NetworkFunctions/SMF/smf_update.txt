@@ -1,0 +1,48 @@
+import logging
+from flask import Flask, request, jsonify
+import requests
+
+logging.basicConfig(level=logging.INFO)
+app = Flask(__name__)
+
+# Mapping of site codes to URLs
+site_mapping = {
+    "1": "https://www.youtube.com",
+    "2": "https://www.google.com",
+    "3": "https://www.facebook.com"
+}
+
+@app.route('/smf/route', methods=['GET'])
+def route_session():
+    user_id = request.args.get('user_id')
+
+    if not user_id or user_id not in users:
+        logging.error(f"SMF: User {user_id} not found or not specified")
+        return jsonify({"error": "User not found"}), 404
+
+    site_code = users[user_id]["site_code"]
+    site_url = site_mapping.get(site_code)
+
+    if not site_url:
+        return jsonify({"error": "Invalid or unsupported site code"}), 400
+
+    # Determine QoS profile based on site code
+    qos_profile = "high" if site_code == "2" else "low"  # Assuming '2' is for Google
+
+    # QoS based routing logic
+    if qos_profile == "high":
+        logging.info(f"SMF: High priority routing for user {user_id} to {site_url}")
+    else:
+        logging.info(f"SMF: Standard routing for user {user_id} to {site_url}")
+
+    try:
+        response = requests.get(site_url, timeout=5)
+        return jsonify({"message": f"Routed to {site_url}", "status_code": response.status_code, "qos_profile": qos_profile})
+    except requests.exceptions.RequestException as e:
+        logging.error(f"SMF: Error routing to {site_url}: {str(e)}")
+        return jsonify({"error": f"Error routing to {site_url}: {str(e)}"}), 500
+
+# ... Rest of your SMF code ...
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=82, debug=False)
