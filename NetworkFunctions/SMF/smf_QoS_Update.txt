@@ -1,3 +1,4 @@
+
 import logging
 from flask import Flask, request, jsonify
 import requests
@@ -15,26 +16,20 @@ site_mapping = {
 @app.route('/smf/route', methods=['GET'])
 def route_session():
     user_id = request.args.get('user_id')
+    site_code = request.args.get('site_code')
 
-    if not user_id or user_id not in users:
-        logging.error(f"SMF: User {user_id} not found or not specified")
-        return jsonify({"error": "User not found"}), 404
+    if not user_id or not site_code:
+        return jsonify({"error": "Missing user_id or site_code"}), 400
 
-    site_code = users[user_id]["site_code"]
+    # Determine QoS profile based on site code (assuming '2' is for Google)
+    qos_profile = "high" if site_code == "2" else "low"
+
     site_url = site_mapping.get(site_code)
-
     if not site_url:
         return jsonify({"error": "Invalid or unsupported site code"}), 400
 
-    # Determine QoS profile based on site code
-    qos_profile = "high" if site_code == "2" else "low"  # Assuming '2' is for Google
-
-    # QoS based routing logic
-    if qos_profile == "high":
-        logging.info(f"SMF: High priority routing for user {user_id} to {site_url}")
-    else:
-        logging.info(f"SMF: Standard routing for user {user_id} to {site_url}")
-
+    # QoS-based routing logic
+    logging.info(f"SMF: Routing for user {user_id} to {site_url} with QoS profile {qos_profile}")
     try:
         response = requests.get(site_url, timeout=5)
         return jsonify({"message": f"Routed to {site_url}", "status_code": response.status_code, "qos_profile": qos_profile})
@@ -42,7 +37,9 @@ def route_session():
         logging.error(f"SMF: Error routing to {site_url}: {str(e)}")
         return jsonify({"error": f"Error routing to {site_url}: {str(e)}"}), 500
 
-# ... Rest of your SMF code ...
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    return jsonify({"status": "healthy"}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=82, debug=False)
