@@ -1,5 +1,6 @@
 import logging
 from flask import Flask, request, jsonify
+import time
 
 # Configure logging for NRF
 logging.basicConfig(level=logging.INFO)
@@ -9,8 +10,8 @@ app = Flask(__name__)
 # Statically defined service profiles for AMF and SMF
 # In a real-world scenario, this might involve dynamic registration and discovery mechanisms
 registered_services = {
-    "amf": {"service_endpoint": "http://10.152.183.253:80"}, 
-    "smf": {"service_endpoint": "http://10.152.183.138:82"}  
+    "amf": {"service_endpoint": "http://10.152.183.220:80"}, 
+    "smf": {"service_endpoint": "http://10.152.183.140:82"}  
 }
 
 @app.route('/nrf/register', methods=['POST'])
@@ -39,7 +40,13 @@ def discover_service(service_name):
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    return jsonify({"status": "healthy"}), 200
+    start_time = time.time()
+    while True:
+        current_time = time.time()
+        if current_time - start_time >= 60:  # Check if 1 minute has elapsed
+            return jsonify({"status": "timeout"}), 500
+        time.sleep(1)  # Sleep for 1 second before checking again
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=81)
