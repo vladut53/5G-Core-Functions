@@ -12,4 +12,4 @@ COPY . /app
 
 EXPOSE 82
 
-CMD ["python", "smf.py"]
+CMD ["python", "smf_QoS_Update.py"]
