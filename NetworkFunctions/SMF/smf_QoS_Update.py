@@ -1,7 +1,7 @@
-
 import logging
 from flask import Flask, request, jsonify
 import requests
+import time
 
 logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
@@ -13,10 +13,11 @@ site_mapping = {
     "3": "https://www.yahoo.com"
 }
 
-@app.route('/smf/route', methods=['GET'])
+@app.route('/smf/route', methods=['POST'])
 def route_session():
-    user_id = request.args.get('user_id')
-    site_code = request.args.get('site_code')
+    data = request.get_json()
+    user_id = data.get('user_id')
+    site_code = data.get('site_code')
 
     if not user_id or not site_code:
         return jsonify({"error": "Missing user_id or site_code"}), 400
