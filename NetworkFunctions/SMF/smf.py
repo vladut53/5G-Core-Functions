@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, request, jsonify
 import requests
+import time
 
 # Configure logging for SMF
 logging.basicConfig(level=logging.INFO)
@@ -9,15 +10,19 @@ app = Flask(__name__)
 
 # Mapping of site codes to URLs
 site_mapping = {
-    "1": "https://www.youtube.com",
+    "1": "https://www.bing.com",
     "2": "https://www.google.com",
-    "3": "https://www.facebook.com"
+    "3": "https://www.yahoo.com"
 }
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    # Simple health check endpoint
-    return jsonify({"status": "healthy"}), 200
+    start_time = time.time()
+    while True:
+        current_time = time.time()
+        if current_time - start_time >= 60:  # Check if 1 minute has elapsed
+            return jsonify({"status": "timeout"}), 500
+        time.sleep(1)  # Sleep for 1 second before checking again
 
 @app.route('/smf/route', methods=['GET'])
 def route_session():
