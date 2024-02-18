@@ -38,14 +38,11 @@ def discover_service(service_name):
         logging.error(f"NRF: Service {service_name} not found in registry")
         return jsonify({"error": f"Service {service_name} not found"}), 404
 
+
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    start_time = time.time()
-    while True:
-        current_time = time.time()
-        if current_time - start_time >= 60:  # Check if 1 minute has elapsed
-            return jsonify({"status": "timeout"}), 500
-        time.sleep(1)  # Sleep for 1 second before checking again
+    return jsonify({"status": "ok"}), 200
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=81)
