@@ -70,15 +70,10 @@ def access_smf():
         logging.error(f"Error accessing SMF: {e}")
         return jsonify({"error": str(e)}), 500
  
-
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    start_time = time.time()
-    while True:
-        current_time = time.time()
-        if current_time - start_time >= 60:  # Check if 1 minute has elapsed
-            return jsonify({"status": "timeout"}), 500
-        time.sleep(1)  # Sleep for 1 second before checking again
+    return jsonify({"status": "ok"}), 200
+
 
 @app.route('/amf/users', methods=['GET'])
 def get_users():
