@@ -10,8 +10,8 @@ app = Flask(__name__)
 # Statically defined service profiles for AMF and SMF
 # In a real-world scenario, this might involve dynamic registration and discovery mechanisms
 registered_services = {
-    "amf": {"service_endpoint": "http://10.152.183.220:80"}, 
-    "smf": {"service_endpoint": "http://10.152.183.140:82"}  
+    "amf": {"service_endpoint": "http://service-amf.nf-amf.svc.cluster.local:80"}, 
+    "smf": {"service_endpoint": "http://service-smf.nf-smf.svc.cluster.local:82"}  
 }
 
 @app.route('/nrf/register', methods=['POST'])
@@ -42,6 +42,7 @@ def discover_service(service_name):
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
     return jsonify({"status": "ok"}), 200
+
 
 
 if __name__ == '__main__':
