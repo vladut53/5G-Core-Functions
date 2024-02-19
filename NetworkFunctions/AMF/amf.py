@@ -33,7 +33,7 @@ def register_user():
 
         users[user_id] = {"name": name, "site_code": site_code}
         logging.info(f"AMF: User {user_id} registered with site code {site_code}")
-        return jsonify({"message": f"User {user_id} registered successfully"}), 201
+        return jsonify({"message": f"User {user_id} registered successfully"}), 201
     
     except Exception as e:
         logging.error(f"Error registering user: {e}")
@@ -41,16 +41,23 @@ def register_user():
 
 @app.route('/amf/access-smf', methods=['POST'])
 def access_smf():
+    user_data = request.get_json(silent=True)
+
+    if not user_data:
+        logging.error("AMF: No data provided for access")
+        return jsonify({"error": "No data provided"}), 400
+
+    user_id = user_data.get("user_id")
+
+    if not user_id or user_id not in users:
+        logging.error("AMF: User not found or not specified")
+        return jsonify({"error": "User not found"}), 404
+
+    logging.info(f"AMF: Received access request from user {user_id}")
+
+    site_code = users[user_id]["site_code"]
+
     try:
-        user_data = request.get_json()
-        user_id = user_data.get("user_id")
-
-        if not user_id or user_id not in users:
-            raise ValueError("User not found or not specified")
-
-        site_code = users[user_id]["site_code"]
-
-        # Assuming NRF_DISCOVER_SMF_URL is an environment variable
         nrf_discover_smf_url = os.getenv("NRF_DISCOVER_SMF_URL", "http://nrf-service.nf-nrf.svc.cluster.local:81/nrf/discover/smf")
         smf_response = requests.get(nrf_discover_smf_url, timeout=3)
         smf_response.raise_for_status()
@@ -64,16 +71,14 @@ def access_smf():
         smf_route_response = requests.get(full_smf_routing_url, timeout=3)
         smf_route_response.raise_for_status()
 
-        return jsonify({"smf_response": smf_route_response.json()}), 200
+        return jsonify({"smf_response": smf_route_response.json()})
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Error routing to SMF: {e}")
+        return jsonify({"error": f"Error routing to SMF: {e}"}), 500
 
-    except Exception as e:
-        logging.error(f"Error accessing SMF: {e}")
-        return jsonify({"error": str(e)}), 500
- 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
     return jsonify({"status": "ok"}), 200
-
 
 @app.route('/amf/users', methods=['GET'])
 def get_users():
