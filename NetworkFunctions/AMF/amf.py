@@ -33,7 +33,7 @@ def register_user():
 
         users[user_id] = {"name": name, "site_code": site_code}
         logging.info(f"AMF: User {user_id} registered with site code {site_code}")
-        return jsonify({"message": f"User {user_id} registered successfully"}), 201
+        return jsonify({"message": f"User {user_id} registered successfully"}), 201
     
     except Exception as e:
         logging.error(f"Error registering user: {e}")
@@ -58,7 +58,7 @@ def access_smf():
     site_code = users[user_id]["site_code"]
 
     try:
-        nrf_discover_smf_url = os.getenv("NRF_DISCOVER_SMF_URL", "http://nrf-service.nf-nrf.svc.cluster.local:81/nrf/discover/smf")
+        nrf_discover_smf_url = os.getenv("NRF_DISCOVER_SMF_URL", "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf")
         smf_response = requests.get(nrf_discover_smf_url, timeout=3)
         smf_response.raise_for_status()
 
@@ -90,3 +90,4 @@ def get_users():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
+
