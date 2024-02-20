@@ -3,7 +3,9 @@ from flask import Flask, request, jsonify
 import requests
 import time
 
+# Configure logging for SMF
 logging.basicConfig(level=logging.INFO)
+
 app = Flask(__name__)
 
 # Mapping of site codes to URLs
@@ -13,34 +15,34 @@ site_mapping = {
     "3": "https://www.yahoo.com"
 }
 
-@app.route('/smf/route', methods=['POST'])
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    return jsonify({"status": "ok"}), 200
+
+
+@app.route('/smf/route', methods=['GET'])
 def route_session():
-    data = request.get_json()
-    user_id = data.get('user_id')
-    site_code = data.get('site_code')
+    site_code = request.args.get('code')
 
-    if not user_id or not site_code:
-        return jsonify({"error": "Missing user_id or site_code"}), 400
-
-    # Determine QoS profile based on site code (assuming '2' is for Google)
-    qos_profile = "high" if site_code == "2" else "low"
-
+    # Retrieve the corresponding URL from the site code
     site_url = site_mapping.get(site_code)
+
     if not site_url:
         return jsonify({"error": "Invalid or unsupported site code"}), 400
 
-    # QoS-based routing logic
-    logging.info(f"SMF: Routing for user {user_id} to {site_url} with QoS profile {qos_profile}")
+    # Determine QoS profile based on site code
+    qos_profile = "high" if site_code == "2" else "low"
+
+    logging.info(f"SMF: Routing request to {site_url} with QoS profile {qos_profile}")
+
+    # Simulate routing by making a request to the selected site
     try:
-        response = requests.get(site_url, timeout=5)
+        response = requests.get(site_url, timeout=5)  # Adding timeout
         return jsonify({"message": f"Routed to {site_url}", "status_code": response.status_code, "qos_profile": qos_profile})
     except requests.exceptions.RequestException as e:
         logging.error(f"SMF: Error routing to {site_url}: {str(e)}")
         return jsonify({"error": f"Error routing to {site_url}: {str(e)}"}), 500
 
-@app.route('/healthcheck', methods=['GET'])
-def healthcheck():
-    return jsonify({"status": "ok"}), 200
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=82, debug=False)
+
