@@ -20,7 +20,7 @@ spec:
           image: vladutzi1/amf:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 83
           env:
             - name: NRF_DISCOVER_SMF_URL
               value: "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf"
@@ -34,14 +34,14 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthcheck
-              port: 80
+              port: 83
             initialDelaySeconds: 15
             periodSeconds: 20
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /healthcheck
-              port: 80
+              port: 83
             initialDelaySeconds: 5
             periodSeconds: 20
             timeoutSeconds: 5
