@@ -3,12 +3,8 @@ pipeline {
     stages {
         stage('Install Docker') {
             steps {
-                script {
-                    // Use Docker plugin to install Docker
-                    docker.withTool('docker') {
-                        sh 'docker --version' // Just to verify Docker is installed
-                    }
-                }
+                // Install Docker using package manager (apt-get for Ubuntu)
+                sh 'apt-get update && apt-get install -y docker.io'
             }
         }
         stage('run collection') {
