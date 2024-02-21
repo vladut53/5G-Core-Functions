@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "d67fde0e-0d01-48fd-8ab6-e532611aead2",
 		"name": "NRF_NF_REGISTER",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "30305841"
 	},
 	"item": [
@@ -31,28 +31,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"service_name\": \"smf\",\n    \"service_endpoint\": \"http://10.152.183.96:82\"\n}\n",
+					"raw": "{\n    \"service_name\": \"smf\",\n    \"service_endpoint\": \"http://10.152.183.123:82\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://10.152.183.49:81/nrf/register",
-					"protocol": "http",
-					"host": [
-						"10",
-						"152",
-						"183",
-						"49"
-					],
-					"port": "81",
-					"path": [
-						"nrf",
-						"register"
-					]
-				}
+				"url": "http://10.152.183.152:81/nrf/register"
 			},
 			"response": []
 		},
@@ -81,28 +67,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"service_name\": \"amf\",\n    \"service_endpoint\": \"http://10.152.183.77:80\"\n}\n",
+					"raw": "{\n    \"service_name\": \"amf\",\n    \"service_endpoint\": \"http://10.152.183.21:83\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://10.152.183.49:81/nrf/register",
-					"protocol": "http",
-					"host": [
-						"10",
-						"152",
-						"183",
-						"49"
-					],
-					"port": "81",
-					"path": [
-						"nrf",
-						"register"
-					]
-				},
+				"url": "http://10.152.183.152:81/nrf/register",
 				"description": "AMF REGISTER"
 			},
 			"response": []
