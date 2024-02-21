@@ -1,22 +1,11 @@
 pipeline {
-    agent {
-        node {
-            label 'docker'
-        }
+  agent any
+  stages {
+    stage('run collection') {
+      steps {
+        sh 'docker run -t postman/newman run -h'
+        sh 'docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman/newman run collection-2.json --color off --disable-unicode'
+      }
     }
-    stages {
-        stage('run collection') {
-            steps {
-                script {
-                    // Pull the Docker image containing Newman
-                    docker.image('postman/newman').pull()
-
-                    // Run Newman commands
-                    docker.image('postman/newman').inside('-v ${WORKSPACE}:/etc/newman --workdir /etc/newman') {
-                        sh 'newman run collection-2.json --color off --disable-unicode'
-                    }
-                }
-            }
-        }
-    }
+  }
 }
