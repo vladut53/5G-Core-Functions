@@ -2,7 +2,6 @@ import logging
 from flask import Flask, request, jsonify
 import requests
 import os
-import time
 
 logging.basicConfig(level=logging.INFO)
 
