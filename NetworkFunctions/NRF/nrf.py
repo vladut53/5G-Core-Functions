@@ -8,7 +8,6 @@ logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 
 # Statically defined service profiles for AMF and SMF
-# In a real-world scenario, this might involve dynamic registration and discovery mechanisms
 registered_services = {
     "amf": {"service_endpoint": "http://service-amf.nf-amf.svc.cluster.local:83"}, 
     "smf": {"service_endpoint": "http://service-smf.nf-smf.svc.cluster.local:82"}  
