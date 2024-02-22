@@ -1,16 +1,14 @@
 pipeline {
     agent any
-    tools {
-        // Use the Docker tool installation named "Local Docker"
-        dockerTool 'Docker'
-    }
     stages {
-        stage('Build and Push Docker Image') {
+        stage('Run Newman Tests') {
             steps {
                 script {
-                    // Example Docker commands
-                    sh 'docker build -t my-image .'
-                    sh 'docker push my-image'
+                    // Pull the Newman image
+                    sh 'docker pull postman/newman'
+
+                    // Run Newman within Docker container
+                    sh 'docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman/newman run NRF_NF_REGISTER.json --color off --disable-unicode'
                 }
             }
         }
