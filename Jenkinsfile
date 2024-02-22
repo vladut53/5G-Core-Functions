@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Run Newman tests using Docker command
-                    sh 'docker run -v "$(pwd):/etc/newman" --workdir /etc/newman -t postman/newman run ./NRF_NF_REGISTER.json --color off --disable-unicode'
+                    sh 'docker run -v "/home/jenkins/agent/workspace/NRF:/etc/newman" --workdir /etc/newman -t postman/newman run ./NRF_NF_REGISTER.json --color off --disable-unicode'
                 }
             }
         }
