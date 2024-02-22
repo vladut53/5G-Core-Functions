@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         // Use the Docker tool installation named "Local Docker"
-        dockerTool 'Local Docker'
+        dockerTool 'Docker'
     }
     stages {
         stage('Build and Push Docker Image') {
