@@ -1,24 +1,26 @@
 pipeline {
     agent {
-        kubernetes {
-            // Define the label corresponding to the DinD pod
-            label 'dind-pod'
-            // Specify the namespace where the DinD pod is deployed
-            defaultContainer 'dind'
+        docker {
+            image 'docker:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
-        stage('Run Postman Collection') {
+        stage('Build Docker Image') {
             steps {
-                container('dind-container') {
-                    // Pull the Newman Docker image
-                    sh 'docker pull postman/newman'
-
-                    // Run Newman to execute the Postman collection
-                    sh 'docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman postman/newman run NRF_NF_REGISTER.json --color off --disable-unicode'
+                script {
+                    // Build Docker image
+                    sh 'docker build -t my-newman-image .'
                 }
             }
         }
-        // Add more stages as needed
+        stage('Run Newman Tests') {
+            steps {
+                script {
+                    // Run Newman within Docker container
+                    sh 'docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t my-newman-image run NRF_NF_REGISTER.json --color off --disable-unicode'
+                }
+            }
+        }
     }
 }
