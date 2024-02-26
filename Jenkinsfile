@@ -1,21 +1,23 @@
 pipeline {
-    agent any
+    agent none
     stages {
-        stage('Debug') {
-            steps {
-                script {
-                    // Print contents of workspace directory
-                    sh 'ls -la ${WORKSPACE}'
+        stage('Build') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
                 }
             }
-        }
-        stage('Run Newman Tests') {
             steps {
-                script {
-                    // Run Newman tests using Docker command
-                    sh 'docker run -v "/home/jenkins/agent/workspace/NRF:/etc/newman" --workdir /etc/newman -t postman/newman run ./NRF_NF_REGISTER.json --color off --disable-unicode'
-                }
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            agent any
+            steps {
+                sh 'mvn test'
             }
         }
     }
 }
+s
