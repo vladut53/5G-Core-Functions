@@ -1,5 +1,5 @@
 pipeline {
-   agent 'dockerCLoud'
+   agent any
   stages {
     stage('run collection') {
       steps {
