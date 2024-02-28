@@ -12,7 +12,7 @@ pipeline {
         stage('Run Collection') {
             steps {
                 // Execute Docker commands to run Postman collection
-                sh "docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman/newman run collection-2.json --color off --disable-unicode"
+                sh "docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman/newman run RF_NF_REGISTER.postman_collection.json --color off --disable-unicode"
             }
         }
     }
