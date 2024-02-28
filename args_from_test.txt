@@ -1,9 +1,0 @@
-Newman container: docker run -v "$(pwd):/etc/newman" --workdir /etc/newman -t postman/newman run ./NRF_NF_REGISTER.json --color off --disable-unicode
-Jenkins pasword: kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
-
-Jenkins installation:
-helm repo add jenkins https://charts.jenkins.io
-helm repo add jenkins https://charts.jenkins.io
-helm repo update
-helm repo add stable https://charts.helm.sh/stable
-helm install jenkins jenkins/jenkins --kubeconfig=/var/snap/microk8s/6089/credentials/client.config
