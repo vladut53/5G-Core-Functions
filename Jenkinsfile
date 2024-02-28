@@ -9,6 +9,13 @@ pipeline {
             }
         }
         
+        stage('Copy File to Container') {
+            steps {
+                // Copy the JSON file from workspace to Docker container
+                sh "docker cp ${WORKSPACE}/RF_NF_REGISTER.postman_collection.json CONTAINER_ID:/etc/newman/RF_NF_REGISTER.postman_collection.json"
+            }
+        }
+        
         stage('Run Collection') {
             steps {
                 // Execute Docker commands to run Postman collection
