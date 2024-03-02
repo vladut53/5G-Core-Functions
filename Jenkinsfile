@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('NRF Functions Register') {
+    stage('Docker Newman container creation') {
       steps {
         sh 'docker run -t postman/newman run -h'
+      }
+    }
+
+    stage('NRF Functions Register') {
+      steps {
         sh 'docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman/newman run PostmanMsg/NRF_NF_REGISTER.postman_collection.json --color off --disable-unicode'
       }
     }
