@@ -17,6 +17,7 @@ def register_user():
         user_id = data.get("user_id")
         name = data.get("name")
         site_code = data.get("site_code")
+        imsi = data.get("imsi")  # New field: IMSI
 
         if not data:
             logging.error("AMF: No data provided for registration")
@@ -30,8 +31,8 @@ def register_user():
             logging.warning(f"AMF: User {user_id} is already registered")
             return jsonify({"error": "User already registered"}), 400
 
-        users[user_id] = {"name": name, "site_code": site_code}
-        logging.info(f"AMF: User {user_id} registered with site code {site_code}")
+        users[user_id] = {"name": name, "site_code": site_code, "imsi": imsi}  # Include IMSI in user data
+        logging.info(f"AMF: User {user_id} registered with site code {site_code} and IMSI {imsi}")
         return jsonify({"message": f"User {user_id} registered successfully"}), 201
     
     except Exception as e:
@@ -55,25 +56,36 @@ def access_smf():
     logging.info(f"AMF: Received access request from user {user_id}")
 
     site_code = users[user_id]["site_code"]
+    imsi = users[user_id]["imsi"]  # Get IMSI for the user
 
     try:
-        nrf_discover_smf_url = os.getenv("NRF_DISCOVER_SMF_URL", "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf")
-        smf_response = requests.get(nrf_discover_smf_url, timeout=3)
-        smf_response.raise_for_status()
+        pcrf_decision_url = os.getenv("PCRF_DECISION_URL", "http://localhost:84/pcrf/decision")
+        pcrf_response = requests.post(pcrf_decision_url, json={"user_id": user_id, "imsi": imsi}, timeout=3)
+        pcrf_response.raise_for_status()
 
-        smf_data = smf_response.json()
-        smf_endpoint = smf_data["service_endpoint"]
+        pcrf_data = pcrf_response.json()
+        can_access_smf = pcrf_data["can_access_smf"]
 
-        full_smf_routing_url = f"{smf_endpoint}/smf/route?code={site_code}"
-        logging.info(f"Routing to SMF with URL: {full_smf_routing_url}")
+        if can_access_smf:
+            nrf_discover_smf_url = os.getenv("NRF_DISCOVER_SMF_URL", "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf")
+            smf_response = requests.get(nrf_discover_smf_url, timeout=3)
+            smf_response.raise_for_status()
 
-        smf_route_response = requests.get(full_smf_routing_url, timeout=3)
-        smf_route_response.raise_for_status()
+            smf_data = smf_response.json()
+            smf_endpoint = smf_data["service_endpoint"]
 
-        return jsonify({"smf_response": smf_route_response.json()})
+            full_smf_routing_url = f"{smf_endpoint}/smf/route?code={site_code}"
+            logging.info(f"Routing to SMF with URL: {full_smf_routing_url}")
+
+            smf_route_response = requests.get(full_smf_routing_url, timeout=3)
+            smf_route_response.raise_for_status()
+
+            return jsonify({"smf_response": smf_route_response.json()})
+        else:
+            return jsonify({"error": "PCRF denied access to SMF"}), 403
     except requests.exceptions.RequestException as e:
-        logging.error(f"Error routing to SMF: {e}")
-        return jsonify({"error": f"Error routing to SMF: {e}"}), 500
+        logging.error(f"Error accessing SMF: {e}")
+        return jsonify({"error": f"Error accessing SMF: {e}"}), 500
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
@@ -89,4 +101,3 @@ def get_users():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=83)
-
