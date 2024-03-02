@@ -41,51 +41,52 @@ def register_user():
 
 @app.route('/amf/access-smf', methods=['POST'])
 def access_smf():
-    user_data = request.get_json(silent=True)
-
-    if not user_data:
-        logging.error("AMF: No data provided for access")
-        return jsonify({"error": "No data provided"}), 400
-
-    user_id = user_data.get("user_id")
-
-    if not user_id or user_id not in users:
-        logging.error("AMF: User not found or not specified")
-        return jsonify({"error": "User not found"}), 404
-
-    logging.info(f"AMF: Received access request from user {user_id}")
-
-    site_code = users[user_id]["site_code"]
-    imsi = users[user_id]["imsi"]  # Get IMSI for the user
-
     try:
-        pcrf_decision_url = os.getenv("PCRF_DECISION_URL", "http://localhost:84/pcrf/decision")
-        pcrf_response = requests.post(pcrf_decision_url, json={"user_id": user_id, "imsi": imsi}, timeout=3)
-        pcrf_response.raise_for_status()
+        user_data = request.get_json(silent=True)
 
-        pcrf_data = pcrf_response.json()
-        can_access_smf = pcrf_data["can_access_smf"]
+        if not user_data:
+            logging.error("AMF: No data provided for access")
+            return jsonify({"error": "No data provided"}), 400
 
-        if can_access_smf:
-            nrf_discover_smf_url = os.getenv("NRF_DISCOVER_SMF_URL", "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf")
-            smf_response = requests.get(nrf_discover_smf_url, timeout=3)
-            smf_response.raise_for_status()
+        user_id = user_data.get("user_id")
 
-            smf_data = smf_response.json()
-            smf_endpoint = smf_data["service_endpoint"]
+        if not user_id or user_id not in users:
+            logging.error("AMF: User not found or not specified")
+            return jsonify({"error": "User not found"}), 404
 
-            full_smf_routing_url = f"{smf_endpoint}/smf/route?code={site_code}"
-            logging.info(f"Routing to SMF with URL: {full_smf_routing_url}")
+        logging.info(f"AMF: Received access request from user {user_id}")
 
-            smf_route_response = requests.get(full_smf_routing_url, timeout=3)
-            smf_route_response.raise_for_status()
+        site_code = users[user_id]["site_code"]
+        imsi = users[user_id]["imsi"]  # Get IMSI for the user
 
-            return jsonify({"smf_response": smf_route_response.json()})
-        else:
-            return jsonify({"error": "PCRF denied access to SMF"}), 403
+        if not imsi.startswith("123"):
+            logging.info(f"AMF: User {user_id} denied access due to IMSI restriction")
+            return jsonify({"error": "Access denied due to IMSI restriction"}), 403
+
+        nrf_discover_smf_url = os.getenv("NRF_DISCOVER_SMF_URL", "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf")
+        smf_response = requests.get(nrf_discover_smf_url, timeout=10)  # Increased timeout to 10 seconds
+        smf_response.raise_for_status()
+
+        smf_data = smf_response.json()
+        smf_endpoint = smf_data.get("service_endpoint")
+
+        if not smf_endpoint:
+            logging.error("AMF: SMF service endpoint not found in the response")
+            return jsonify({"error": "SMF service endpoint not found"}), 500
+
+        full_smf_routing_url = f"{smf_endpoint}/smf/route?code={site_code}"
+        logging.info(f"Routing to SMF with URL: {full_smf_routing_url}")
+
+        smf_route_response = requests.get(full_smf_routing_url, timeout=10)  # Increased timeout to 10 seconds
+        smf_route_response.raise_for_status()
+
+        return jsonify({"smf_response": smf_route_response.json()})
     except requests.exceptions.RequestException as e:
         logging.error(f"Error accessing SMF: {e}")
         return jsonify({"error": f"Error accessing SMF: {e}"}), 500
+    except Exception as e:
+        logging.error(f"Internal server error: {e}")
+        return jsonify({"error": "Internal server error"}), 500
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
