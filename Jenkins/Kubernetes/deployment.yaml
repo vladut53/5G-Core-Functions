@@ -4,7 +4,7 @@ metadata:
   name: jenkins
   namespace: devops-tools
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: jenkins-server
@@ -19,7 +19,7 @@ spec:
       serviceAccountName: jenkins-admin
       containers:
         - name: jenkins
-          image: jenkins/jenkins:lts
+          image: vladutzi1/myjenkins:latest
           resources:
             limits:
               memory: "2Gi"
