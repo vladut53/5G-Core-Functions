@@ -13,7 +13,7 @@ pipeline {
       }
     }
     
-    stage('SMF Route to sites') {
+    stage('SMF Target Routes') {
       steps {
         sh 'docker run -v ${WORKSPACE}:/etc/newman --workdir /etc/newman -t postman/newman run PostmanMsg/SMF-Routes.postman_collection.json --color off --disable-unicode'
       }
