@@ -1,16 +1,15 @@
 import logging
 from flask import Flask, request, jsonify
-import time
 
-# Configure logging for NRF
 logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
-# Statically defined service profiles for AMF and SMF
+# Statically defined service profiles for AMF, SMF, and PCRF
 registered_services = {
     "amf": {"service_endpoint": "http://service-amf.nf-amf.svc.cluster.local:83"}, 
-    "smf": {"service_endpoint": "http://service-smf.nf-smf.svc.cluster.local:82"}  
+    "smf": {"service_endpoint": "http://service-smf.nf-smf.svc.cluster.local:82"},
+    "pcrf": {"service_endpoint": "http://service-pcrf.nf-pcrf.svc.cluster.local:84"} 
 }
 
 @app.route('/nrf/register', methods=['POST'])
@@ -37,12 +36,9 @@ def discover_service(service_name):
         logging.error(f"NRF: Service {service_name} not found in registry")
         return jsonify({"error": f"Service {service_name} not found"}), 404
 
-
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
     return jsonify({"status": "ok"}), 200
-
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=81)
