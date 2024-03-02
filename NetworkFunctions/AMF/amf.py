@@ -41,6 +41,13 @@ def register_user():
 
 @app.route('/amf/access-smf', methods=['POST'])
 def access_smf():
+    pcrf_decision_url = os.getenv("PCRF_DECISION_URL", "http://localhost:84/pcrf/decision")
+    pcrf_response = requests.post(pcrf_decision_url, json={"user_id": user_id, "imsi": imsi}, timeout=3)
+    pcrf_response.raise_for_status()
+    
+    pcrf_data = pcrf_response.json()
+    can_access_smf = pcrf_data["can_access_smf"]
+
     try:
         user_data = request.get_json(silent=True)
 
