@@ -1,5 +1,7 @@
 FROM python:latest  
 
+MAINTAINER Vladut ILIE  
+
 WORKDIR /app
 
 COPY requirements.txt .
