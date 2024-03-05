@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:lts
 
-MAINTAINER madhusudan reddy
+MAINTAINER Vladut ILIE  
 
 USER root
 
