@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pcrf
-          image: vladutzi1/pcrf:latest  # Replace with the actual image name and tag
+          image: vladutzi1/pcrf:latest 
           imagePullPolicy: Always
           ports:
             - containerPort: 84
