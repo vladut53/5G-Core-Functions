@@ -1,0 +1,21 @@
+{
+    "user1": {
+    "user_id": "1", 
+      "name": "User1 Name",
+      "site_code": "3",
+      "imsi": "123040123456789"
+    },
+    "user2": {
+        "user_id": "2", 
+          "name": "User2 Name",
+          "site_code": "3",
+          "imsi": "443040123456789"
+        },
+    "user3": {
+        "user_id": "1", 
+        "name": "User3 Name",
+        "site_code": "1",
+        "imsi": "123134600000001"
+            }   
+  }
+  
