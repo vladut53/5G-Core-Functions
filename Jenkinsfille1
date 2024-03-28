@@ -1,0 +1,38 @@
+pipeline {
+    agent {
+        kubernetes {
+            serviceAccount 'jenkins'
+        }
+    }
+
+    stages {
+        stage('Create namespaces') {
+            steps {
+                sh 'kubectl create namespace nf-amf' // AMF Namepace
+                sh 'kubectl create namespace nf-smf' // SMF Namepace
+                sh 'kubectl create namespace nf-nrf' // NRF Namepsace
+                sh 'kubectl create namespace nf-pcrf' // PCRF Namespace
+            }
+        }
+
+        
+        stage('Deploy services') {
+            steps {
+                sh 'kubectl apply -f Kuberntes/AMF/amfService.yaml -n nf-amf'
+                sh 'kubectl apply -f Kuberntes/SMF/smfService.yaml -n nf-smf'
+                sh 'kubectl apply -f Kuberntes/NRF/nrfService.yaml -n nf-nrf'
+                sh 'kubectl apply -f Kuberntes/PRCF/pcrfService.yaml -n nf-pcrf'
+            }   
+        }
+            
+        stage('Deploy Deployment') {
+            steps {
+                sh 'kubectl apply -f Kuberntes/AMF/amfDeployment.yaml -n nf-amf'
+                sh 'kubectl apply -f Kuberntes/SMF/smfDeployment.yaml -n nf-smf'
+                sh 'kubectl apply -f Kuberntes/NRF/nrfDeployment.yaml -n nf-nrf'
+                sh 'kubectl apply -f Kuberntes/PRCF/pcrfDeployment.yaml -n nf-pcrf'
+            }
+        }
+    }
+    
+}
