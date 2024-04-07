@@ -41,6 +41,7 @@ def register_user():
 
 @app.route('/amf/access-smf', methods=['POST'])
 def access_smf():
+    pcrf_discover_smf_url = os.getenv("NRF_DISCOVER_PCRF_URL", "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/pcrf")
     pcrf_decision_url = os.getenv("PCRF_DECISION_URL", "http://localhost:84/pcrf/decision")
     pcrf_response = requests.post(pcrf_decision_url, json={"user_id": user_id, "imsi": imsi}, timeout=3)
     pcrf_response.raise_for_status()
