@@ -33,6 +33,9 @@ def route_session():
     # Determine QoS profile based on site code
     qos_profile = "high" if site_code == "2" else "low"
 
+    if qos_profile != "high":
+        time.sleep(5)
+
     logging.info(f"SMF: Routing request to {site_url} with QoS profile {qos_profile}")
 
     # Simulate routing by making a request to the selected site
