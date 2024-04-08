@@ -1,11 +1,13 @@
-#/bin/bash
+#!/bin/bash
 
 
 MSG="GET /healthcheck"
-namespaces=('nf-amf' 'nf-nrf' 'nf-smf' 'nf-pcrf')
-#namespaces=$(microk8s kubectl get namespaces | grep -E 'mf|nrf|pcrf' | tr -s " " | cut -d" " -f1 | tr '\n' ' ')
-OUTPUT="./logs/logs.txt"
+#namespaces=('nf-amf' 'nf-nrf' 'nf-smf' 'nf-pcrf')
+namespaces=($(microk8s kubectl get namespaces | grep -E 'mf|nrf|pcrf' | tr -s " " | cut -d" " -f1))
+tmp=$(pwd)
+OUTPUT="$tmp/logs.txt"
 rm -fr $OUTPUT
+
 
 
 for NAMESPACE in "${namespaces[@]}"; do
