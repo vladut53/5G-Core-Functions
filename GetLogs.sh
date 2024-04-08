@@ -4,7 +4,7 @@
 MSG="GET /healthcheck"
 namespaces=('nf-amf' 'nf-nrf' 'nf-smf' 'nf-pcrf')
 #namespaces=$(microk8s kubectl get namespaces | grep -E 'mf|nrf|pcrf' | tr -s " " | cut -d" " -f1 | tr '\n' ' ')
-OUTPUT="/home/vladut/Downloads/5G-Core-Functions-main/OUTPUTS/OUTPUTS.txt"
+OUTPUT="./logs/logs.txt"
 rm -fr $OUTPUT
 
 
