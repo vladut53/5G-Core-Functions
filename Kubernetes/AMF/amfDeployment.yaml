@@ -22,8 +22,8 @@ spec:
           env:
             - name: NRF_DISCOVER_SMF_URL
               value: "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf"
-            - name: PCRF_DECISION_URL  # Add PCRF decision URL
-              value: "http://pcrf-service.nf-pcrf.svc.cluster.local:84/pcrf/decision"  # Modify with actual PCRF service URL
+            - name: PCRF_DECISION_URL  
+              value: "http://pcrf-service.nf-pcrf.svc.cluster.local:84/pcrf/decision" 
           resources:
             limits:
               cpu: '1'
