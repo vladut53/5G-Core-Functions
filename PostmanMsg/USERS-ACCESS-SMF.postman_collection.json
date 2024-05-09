@@ -157,6 +157,108 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "USER4-ACCESS-SMF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Error Response Structure\", function () {",
+							"    pm.expect(pm.response.json()).to.eql({",
+							"        \"error\": \"Access denied due to IMSI restriction\"",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"4\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.41:83/amf/access-smf",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"41"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"access-smf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER5-ACCESS-SMF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify SMF Response Structure\", function () {",
+							"    pm.expect(pm.response.json()).to.eql({",
+							"        \"smf_response\": {",
+							"            \"message\": \"Routed to https://www.google.com\",",
+							"            \"qos_profile\": \"high\",",
+							"            \"status_code\": 200",
+							"        }",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"5\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.41:83/amf/access-smf",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"41"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"access-smf"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
