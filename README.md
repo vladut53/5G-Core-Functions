@@ -8,5 +8,5 @@
 # 20.01.2024: QoS Update for the SMF
 # 15.02.2024: Jenkins for automating the Postman Messages
 # 01.03.2024: PCRF Node Release
-# 04.03.2024: Terraform Infrastructure for AWS
+# 04.03.2024: Terraform Infrastructure for AKS
 
