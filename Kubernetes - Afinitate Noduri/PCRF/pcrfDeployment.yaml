@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-pcrf
+  namespace: nf-pcrf
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: pcrf
+  template:
+    metadata:
+      labels:
+        app: pcrf
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pcf
+                operator: In
+                values:
+                - "true"
+      containers:
+        - name: pcrf
+          image: vladutzi1/pcrf:latest 
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 84
+          resources:
+            limits:
+              cpu: '1'
+              memory: 500Mi
+            requests:
+              cpu: '0.5'
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 84
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 84
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            timeoutSeconds: 5

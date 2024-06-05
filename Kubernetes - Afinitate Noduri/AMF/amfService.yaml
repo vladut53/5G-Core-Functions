@@ -1,0 +1,15 @@
+# AMF - SERVICE FILE
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-amf
+  namespace: nf-amf
+spec: 
+  selector:
+    app: amf
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 83
+      targetPort: 83

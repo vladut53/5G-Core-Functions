@@ -1,0 +1,101 @@
+# Pod
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: myPod
+  namespace: targetNS
+spec:
+  containers:
+    - name: ContainerName
+      image: ImageName
+
+# Replica Set
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: rsName
+  namespace: targetNS
+  labels:
+    app: myapp
+    type: rstype
+spec:
+  template: 
+    metadata: 
+      name: rsName
+      labels: 
+        app: rsapp
+        type: rstype
+    spec: 
+      containers:
+        - name: contname
+          image: contImage
+    replicase: 3
+    selector: 
+      matchLabels:
+        type: rstype
+
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deplName
+  namespace: targetNS
+  labels:
+    app: myapp
+    type: apptype
+spec:
+  template:
+    metadata: 
+      name: deplName
+      labels:
+        app: myapp  
+        type: apptype
+    spec:
+      containers: 
+        - name: ContainerName 
+          image: ImageName
+  replicas: 3
+  selector:
+    matchLabels:
+      type: name
+
+
+# Port
+apiVersion: v1
+kind: Service
+metadata: 
+  name: serviceobj
+  namespace: targetNS
+  labels: 
+    app: serviceapp
+    type: servicetype
+spec: 
+  type: NodePort/ClusterIP/LoadBalancer
+  ports:
+    - targetPort: 80
+      port: 80
+      NodePort: 30008
+  selector: # labels elements: app and type
+    app: targetapp
+    type: targetapptype
+
+# NameSpace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nameNS
+
+# Resource Quota
+apiVersion: v1
+kind: ResourceQuota
+metadata: 
+  name: compute-quota
+  namespace: dev
+spec: 
+  hard:
+    pods: '10'
+    requests.cpu: '4'
+    requests.memory: 5Gi
+    limits.cpu: '40'
+    limits.memory: 10Gi

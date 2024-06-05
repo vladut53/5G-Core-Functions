@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-amf
+  namespace: nf-amf
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: amf
+  template:
+    metadata:
+      labels:
+        app: amf
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: amf
+                operator: In
+                values:
+                - "true"
+      containers:
+        - name: amf
+          image: vladutzi1/amf:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 83
+          env:
+            - name: NRF_DISCOVER_SMF_URL
+              value: "http://service-nrf.nf-nrf.svc.cluster.local:81/nrf/discover/smf"
+            - name: PCRF_DECISION_URL  # Add PCRF decision URL
+              value: "http://pcrf-service.nf-pcrf.svc.cluster.local:84/pcrf/decision"  # Modify with actual PCRF service URL
+          resources:
+            limits:
+              cpu: '1'
+              memory: 500Mi
+            requests:
+              cpu: '0.5'
+              memory: 250Mi
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 83
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 83
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            timeoutSeconds: 5
