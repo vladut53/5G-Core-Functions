@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "df8ab120-1d1b-48fd-b8c4-37ad8ee2c42e",
+		"name": "USERS-ACCESS-SMF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30305841"
+	},
+	"item": [
+		{
+			"name": "USER2-ACCESS-SMF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Error Response Structure\", function () {",
+							"    pm.expect(pm.response.json()).to.eql({",
+							"        \"error\": \"Access denied due to IMSI restriction\"",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"2\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/access-smf",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"access-smf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER3-ACCESS-SMF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify SMF Response Structure\", function () {",
+							"    pm.expect(pm.response.json()).to.eql({",
+							"        \"smf_response\": {",
+							"            \"message\": \"Routed to https://www.bing.com\",",
+							"            \"qos_profile\": \"low\",",
+							"            \"status_code\": 200",
+							"        }",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"3\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/access-smf",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"access-smf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER1-ACCESS-SMF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify SMF Response Structure\", function () {",
+							"    pm.expect(pm.response.json()).to.eql({",
+							"        \"smf_response\": {",
+							"            \"message\": \"Routed to https://www.yahoo.com\",",
+							"            \"qos_profile\": \"low\",",
+							"            \"status_code\": 200",
+							"        }",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/access-smf",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"access-smf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER4-ACCESS-SMF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify Error Response Structure\", function () {",
+							"    pm.expect(pm.response.json()).to.eql({",
+							"        \"error\": \"Access denied due to IMSI restriction\"",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"4\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/access-smf",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"access-smf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER5-ACCESS-SMF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify SMF Response Structure\", function () {",
+							"    pm.expect(pm.response.json()).to.eql({",
+							"        \"smf_response\": {",
+							"            \"message\": \"Routed to https://www.google.com\",",
+							"            \"qos_profile\": \"high\",",
+							"            \"status_code\": 200",
+							"        }",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"5\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/access-smf",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"access-smf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

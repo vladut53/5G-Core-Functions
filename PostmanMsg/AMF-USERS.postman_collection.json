@@ -1,0 +1,485 @@
+{
+	"info": {
+		"_postman_id": "0f2fae33-ec90-4cfb-b62f-1ab66a01a37e",
+		"name": "AMF-USERS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30305841"
+	},
+	"item": [
+		{
+			"name": "USER1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response message is correct\", function () {",
+							"    var userId = pm.environment.get(\"userId\");",
+							"    pm.expect(pm.response.json().message).to.eql(\"User 1 registered successfully\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"1\",\n    \"name\": \"User1 Name\",\n    \"site_code\": \"3\",\n    \"imsi\": \"123040123456789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/register",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response message is correct\", function () {",
+							"    var userId = pm.environment.get(\"userId\");",
+							"    pm.expect(pm.response.json().message).to.eql(\"User 2 registered successfully\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"2\",\n    \"name\": \"User2 Name\",\n    \"site_code\": \"3\",\n    \"imsi\": \"443040123456789\"\n\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/register",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response message is correct\", function () {",
+							"    var userId = pm.environment.get(\"userId\");",
+							"    pm.expect(pm.response.json().message).to.eql(\"User 3 registered successfully\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"3\",\n    \"name\": \"User3 Name\",\n    \"site_code\": \"1\",\n    \"imsi\": \"123134600000001\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/register",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER1_PCRF_DECISION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body contains 'can_access_smf': true\", function () {",
+							"    pm.response.to.have.jsonBody('can_access_smf', true);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"1\",\n    \"imsi\": \"123040123456789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.123:84/pcrf/decision",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"123"
+					],
+					"port": "84",
+					"path": [
+						"pcrf",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER2_PCRF_DECISION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body contains 'can_access_smf': true\", function () {",
+							"    pm.response.to.have.jsonBody('can_access_smf', false);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"2\",\n    \"imsi\": \"443040123456789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.123:84/pcrf/decision",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"123"
+					],
+					"port": "84",
+					"path": [
+						"pcrf",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER3_PCRF_DECISION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body contains 'can_access_smf': true\", function () {",
+							"    pm.response.to.have.jsonBody('can_access_smf', true);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"3\",\n    \"imsi\": \"123134600000001\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.123:84/pcrf/decision",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"123"
+					],
+					"port": "84",
+					"path": [
+						"pcrf",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response message is correct\", function () {",
+							"    var userId = pm.environment.get(\"userId\");",
+							"    pm.expect(pm.response.json().message).to.eql(\"User 4 registered successfully\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"4\",\n    \"name\": \"User4 Name\",\n    \"site_code\": \"2\",\n    \"imsi\": \"448740123226789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/register",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER4_PCRF_DECISION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body contains 'can_access_smf': false\", function () {",
+							"    pm.response.to.have.jsonBody('can_access_smf', false);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"4\",\n    \"imsi\": \"448740123226789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.123:84/pcrf/decision",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"123"
+					],
+					"port": "84",
+					"path": [
+						"pcrf",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response message is correct\", function () {",
+							"    var userId = pm.environment.get(\"userId\");",
+							"    pm.expect(pm.response.json().message).to.eql(\"User 5 registered successfully\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"5\",\n    \"name\": \"User5 Name\",\n    \"site_code\": \"2\",\n    \"imsi\": \"123042013459789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.84:83/amf/register",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"84"
+					],
+					"port": "83",
+					"path": [
+						"amf",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "USER5_PCRF_DECISION",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body contains 'can_access_smf': true\", function () {",
+							"    pm.response.to.have.jsonBody('can_access_smf', true);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"5\",\n    \"imsi\": \"123042013459789\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.152.183.123:84/pcrf/decision",
+					"protocol": "http",
+					"host": [
+						"10",
+						"152",
+						"183",
+						"123"
+					],
+					"port": "84",
+					"path": [
+						"pcrf",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
